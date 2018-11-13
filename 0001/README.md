@@ -30,8 +30,6 @@ API로 불러오는 자료의 인코딩에 문제가 있어서 SAS 9.4 (유니�
 2. Final_extraction_longdata_004.sas
 3. Final_extraction_longdata_GDP.sas
 
----
-
 1. longdata_002: 세출/지출 예산편성현황(총액) / 2007-2018
 2. longdata_004: 세출/지출 결산 현황 / 2007-2016
 
