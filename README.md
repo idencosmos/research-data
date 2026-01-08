@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![SAS 9.4](https://img.shields.io/badge/SAS-9.4%20Unicode-blue.svg)](https://www.sas.com/)
+![Status](https://img.shields.io/badge/Status-Archived-lightgrey.svg)
 
 > **Annual Changes in Unused Budget by Administration and the Efficiency of National Assembly Budget Deliberation**
 
@@ -9,21 +10,45 @@
 
 ---
 
+> **⚠️ 아카이브 안내**
+>
+> 이 저장소는 2018년 연구 당시의 코드를 **참고용으로 보존**하고 있습니다.
+> 코드의 실행 가능 여부는 보장되지 않으며, 추가 유지보수 계획은 없습니다.
+
+---
+
 ## 목차
 
+- [프로젝트 상태](#프로젝트-상태)
 - [연구 배경](#연구-배경)
 - [디렉토리 구조](#디렉토리-구조)
 - [데이터 설명](#데이터-설명)
   - [데이터 출처](#데이터-출처)
   - [데이터셋 목록](#데이터셋-목록)
   - [주요 변수](#주요-변수)
-- [사용 방법](#사용-방법)
-  - [필수 환경](#필수-환경)
-  - [API 키 발급](#api-키-발급)
-  - [실행 방법](#실행-방법)
+- [코드 구조 (참고용)](#코드-구조-참고용)
 - [인용](#인용)
 - [라이선스](#라이선스)
-- [연락처](#연락처)
+
+---
+
+## 프로젝트 상태
+
+| 항목 | 내용 |
+|------|------|
+| **코드 작성 시기** | 2018년 11월 |
+| **API 키 발급 시기** | 2018년 3월 |
+| **데이터 수집 기간** | 2000년 ~ 2018년 |
+| **유지보수 상태** | 아카이브 (유지보수 예정 없음) |
+
+### 주의사항
+
+본 코드는 2018년 당시 환경을 기준으로 작성되었습니다. 현재 사용 시 다음 사항에 유의하세요:
+
+- **API 변경 가능성**: 열린재정 및 국가지표체계 API의 엔드포인트, 파라미터, 응답 형식이 변경되었을 수 있습니다
+- **프로토콜 변경**: 코드에 사용된 HTTP 엔드포인트가 HTTPS로 변경되었을 수 있습니다
+- **API 키 만료**: 코드에 포함된 API 키는 만료되었을 가능성이 높습니다
+- **SAS 버전**: SAS 9.4 이후 버전에서 호환성 문제가 발생할 수 있습니다
 
 ---
 
@@ -56,15 +81,17 @@ research-data/
 
 ### 데이터 출처
 
-| 출처 | URL | 설명 |
-|------|-----|------|
-| 열린재정 | https://openapi.openfiscaldata.go.kr | 정부 예산/결산 데이터 API |
-| 국가지표체계 | https://www.index.go.kr | GDP 등 국가 통계 지표 |
+| 출처 | URL (2018년 기준) | 설명 |
+|------|-------------------|------|
+| 열린재정 | http://openapi.openfiscaldata.go.kr | 정부 예산/결산 데이터 API |
+| 국가지표체계 | http://www.index.go.kr | GDP 등 국가 통계 지표 |
+
+> 위 URL은 2018년 코드 작성 당시 기준이며, 현재는 변경되었을 수 있습니다.
 
 ### 데이터셋 목록
 
-| 데이터셋 | 파일 | 기간 | 설명 |
-|----------|------|------|------|
+| 데이터셋 | 파일 | 수집 기간 | 설명 |
+|----------|------|-----------|------|
 | `longdata_002` | `1. Final_extraction_*.sas` | 2000-2018 | 세출/지출 예산편성현황 (정부안 vs 국회확정) |
 | `longdata_004` | `2. Final_extraction_*.sas` | 2000-2018 | 세출/지출 결산현황 (불용액 포함) |
 | `longdata_GDP` | `3. Final_extraction_*.sas` | - | GDP 데이터 |
@@ -105,35 +132,32 @@ research-data/
 
 ---
 
-## 사용 방법
+## 코드 구조 (참고용)
 
-### 필수 환경
+> **참고**: 아래 내용은 2018년 당시 코드 구조를 설명합니다. 현재 실행 가능 여부는 보장되지 않습니다.
+
+### 작성 환경 (2018년 기준)
 
 - **SAS 9.4** (Unicode 지원 버전)
-  - API 응답의 한글 인코딩 처리를 위해 Unicode 지원 필수
-- 필요 모듈: Base SAS, SAS/STAT
+- Windows 10 (X64_10HOME)
+- SAS/STAT 14.3, SAS/ETS 14.3
 
-### API 키 발급
+### 코드 동작 방식
 
-1. **열린재정 API**: https://openapi.openfiscaldata.go.kr 에서 회원가입 후 API 키 발급
-2. **국가지표체계 API**: https://www.index.go.kr 에서 API 사용 신청
+각 SAS 스크립트는 다음과 같은 방식으로 데이터를 수집합니다:
 
-### 실행 방법
+1. **API 호출**: 매크로를 사용하여 연도별로 API를 반복 호출
+2. **JSON/XML 파싱**: 응답 데이터를 파싱하여 구조화
+3. **데이터 변환**: 변수명 라벨링 및 데이터 타입 변환
+4. **데이터셋 생성**: SAS 데이터셋(`.sas7bdat`) 파일로 저장
 
-1. SAS 스크립트 내 경로 및 API 키 수정:
-   ```sas
-   %let dir=본인의_작업_디렉토리_경로;
-   %let String01=발급받은_API_키;
-   ```
+### 스크립트별 API 엔드포인트
 
-2. 스크립트 실행 순서:
-   ```
-   1. Final_extraction_longdata_002.sas  → longdata_002.sas7bdat 생성
-   2. Final_extraction_longdata_004.sas  → longdata_004.sas7bdat 생성
-   3. Final_extraction_longdata_GDP.sas  → longdata_GDP.sas7bdat 생성
-   ```
-
-3. 생성된 SAS 데이터셋을 활용하여 분석 수행
+| 스크립트 | API 엔드포인트 (2018년 기준) |
+|----------|------------------------------|
+| `longdata_002` | `http://openapi.openfiscaldata.go.kr/ExpenditureBudgetInit` |
+| `longdata_004` | `http://openapi.openfiscaldata.go.kr/ExpendituresSettlement` |
+| `longdata_GDP` | `http://www.index.go.kr/openApi/xml_stts.do` |
 
 ---
 
@@ -164,10 +188,3 @@ research-data/
 ```
 Copyright (c) 2018 LEE KWONHEE
 ```
-
----
-
-## 연락처
-
-- **Issues**: 버그 리포트 및 기능 요청은 [GitHub Issues](../../issues)를 이용해 주세요.
-- **연구 관련 문의**: 논문 저자에게 직접 연락 바랍니다.
