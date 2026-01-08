@@ -1,38 +1,16 @@
----
+# 데이터셋 #0001
 
-    NOTE: Copyright (c) 2016 by SAS Institute Inc., Cary, NC, USA.
-    NOTE: SAS (r) Proprietary Software 9.4 (TS1M5 MBCS3170)
-    NOTE: 이 세션은 X64_10HOME 플랫폼에서 실행되고 있습니다.
+> 상세 문서는 [프로젝트 루트 README](../README.md)를 참조하세요.
 
-    NOTE: 업데이트 된 분석 제품:
+## 포함 파일
 
-      SAS/STAT 14.3
-      SAS/ETS 14.3
-      SAS/OR 14.3
-      SAS/IML 14.3
-      SAS/QC 14.3
+| 파일명 | 설명 | 출력 데이터셋 |
+|--------|------|---------------|
+| `1. Final_extraction_longdata_002.sas` | 예산편성현황 추출 | `longdata_002` |
+| `2. Final_extraction_longdata_004.sas` | 결산현황 추출 | `longdata_004` |
+| `3. Final_extraction_longdata_GDP.sas` | GDP 데이터 추출 | `longdata_GDP` |
 
-    NOTE: 추가 호스트 정보:
+## 실행 환경
 
-      X64_10HOME WIN 10.0.16299 Workstation
-
-API로 불러오는 자료의 인코딩에 문제가 있어서 SAS 9.4 (유니코드 지원)으로 실행합니다.
-
----
-
-### 논문
-> 김봉환, & 이권희. (2018). 불용액의 정권 연차별 변화와 국회 예산심의의 효율성
-
----
-
-### 코드
-1. Final_extraction_longdata_002.sas
-2. Final_extraction_longdata_004.sas
-3. Final_extraction_longdata_GDP.sas
-
----
-
-1. longdata_002: 세출/지출 예산편성현황(총액) / 2007-2018
-2. longdata_004: 세출/지출 결산 현황 / 2007-2016
-
----
+- **SAS 9.4** (Unicode 지원)
+- API 응답의 한글 인코딩 처리를 위해 Unicode 버전 필수
