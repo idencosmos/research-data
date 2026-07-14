@@ -1,0 +1,7 @@
+{
+  "bundle": "t002_longdata_004",
+  "source_file": "0001/2. Final_extraction_longdata_004.sas",
+  "source_blob_sha": "77c5c3f01424a5137c767aab527565542893c82c",
+  "source_commit": "b28e1fb85d4a7f7e8dd75f92b00978ae1e63b05d",
+  "notes": "Core 결산현황 transform: mocks the API-parsed `combine` (34 char cols) and runs the upstream PROC SQL (input best32. conversion + Korean labels for all amounts incl. DUSEAMT/불용액), then PRINT + MEANS by 회계연도."
+}
