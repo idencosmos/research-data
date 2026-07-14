@@ -1,0 +1,7 @@
+{
+  "bundle": "t001_longdata_002",
+  "source_file": "0001/1. Final_extraction_longdata_002.sas",
+  "source_blob_sha": "68d174f194723d1e8112d3017ffeffc6ea0c7f72",
+  "source_commit": "b28e1fb85d4a7f7e8dd75f92b00978ae1e63b05d",
+  "notes": "예산편성현황 transform: mocks the API-parsed `combine` (10 char cols) and runs the upstream PROC SQL — input best32. conversion with the *1000 천원→원 rescale and Korean labels for 정부안/국회확정 amounts, then PRINT."
+}
